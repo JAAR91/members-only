@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6">
+            <div class="border border-3 rounded p-4 bg-light my-1">
+                <div class="shadown ms-auto">
+                    <p class="text-uppercase text-decoration-none fs-5 link-secondary"> <%= @post.title %> </p>
+                </div>
+                <div class="container shadown">
+                        <%= @post.body %>
+                </div>
+                 <% if user_signed_in? %>
+                    <p class="shadown ms-auto text-end">
+                    by <%= @post.user.email %>
+                    </p>
+                <%end%>
+                <div class="d-flex flex-row justify-content-end">
+                    <%= link_to "Edit", edit_user_post_path(current_user.id, @post.id), class:'mx-2 text-decoration-none link-primary' %></li>
+                    <%= link_to "Destroy", user_post_path(current_user.id,@post.id), method: :delete, data: { confirm: "Are you sure?" }, class:'link-danger mx-2 text-decoration-none' %>
+                </div>
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+</div>

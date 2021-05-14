@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6 border shadown rounded m-3 p-2">
+           <%= form_with model: @post, url: "/user/#{current_user.id}/post", method:'post' do |form| %>
+                <div>
+                    <%= form.label 'New Post title' %><br>
+                    <%= form.text_field :title, class:'container border rounded' %>
+                    <% @post.errors.full_messages_for(:title).each do |message| %>
+                        <div><%= message %></div>
+                    <% end %>
+                </div>
+                <div>
+                    <%= form.label :body %><br>
+                    <%= form.text_area :body, class:'container border rounded ' %><br>
+                    <% @post.errors.full_messages_for(:body).each do |message| %>
+                        <div><%= message %></div>
+                    <% end %>
+                </div>
+                <div>
+                    <%= form.text_field :user_id, value: current_user.id, type: :hidden %>
+                </div>
+                <div>
+                    <%= form.submit 'Create new Post', class:'btn btn-primary' %>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+</div>
