@@ -14,6 +14,7 @@ class PostController < ApplicationController
     p @post
     p @post.save
     if @post.save
+      flash.alert = "Post created succesfuly!"
       redirect_to root_path
     else
       flash.alert = "Error unable to save the post"
@@ -22,7 +23,18 @@ class PostController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      redirect_to user_post_path(@post.user_id,@post.id)
+    else
+      flash.alert = "Error!Unable to update the post"
+      render :edit
+    end
   end
 
   def show

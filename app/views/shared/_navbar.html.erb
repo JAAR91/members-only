@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <%= link_to 'Home', root_path, class:'nav-link text-dark' %>
         </li>
         <% if user_signed_in? %>
            <li class="nav-item">
-           <a class="nav-link" href="#">My Posts</a>
+           <a class="nav-link active" href="#">My Posts</a>
            </li>  
         <%end%>  
         
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <% if user_signed_in? %>
                 Welcome <%= current_user.email %>
              <%else%>

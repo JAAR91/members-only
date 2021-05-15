@@ -4,29 +4,38 @@
 
         </div>
         <div class="col-6">
-            <div class="border border-3 rounded p-4 bg-light my-1">
-                <div class="shadown ms-auto">
-                    <p class="text-uppercase text-decoration-none fs-5 link-secondary"> <%= @post.title %> </p>
+            <div class="border border-3 rounded p-3 bg-light">
+                <div class="shadown ms-auto d-flex flex-row align-items-center border-bottom m-1">
+                    <p class="text-uppercase text-decoration-none fs-5 link-secondary text-break"> <%= @post.title %> </p>
+                    <p class="text-black-50 mx-2"><%= @post.created_at %></p>
                 </div>
                 <div class="container shadown">
-                        <%= @post.body %>
+                    <p class="text-break my-2"><%= @post.body%></p>
                 </div>
                  <% if user_signed_in? %>
-                    <p class="shadown ms-auto text-end">
+                    <p class="shadown ms-auto text-end border-bottom py-2">
                     by <%= @post.user.email %>
                     </p>
                 <%end%>
-                <div class="d-flex flex-row justify-content-end">
-                    <%= link_to "Edit", edit_user_post_path(current_user.id, @post.id), class:'mx-2 text-decoration-none link-primary' %></li>
-                    <%= link_to "Destroy", user_post_path(current_user.id,@post.id), method: :delete, data: { confirm: "Are you sure?" }, class:'link-danger mx-2 text-decoration-none' %>
-                </div>
+                <% if current_user.id == @post.user_id %>
+                    <div class="d-flex flex-row justify-content-end">
+                        <%= link_to "Edit", edit_user_post_path(current_user.id, @post.id), class:'mx-2 text-decoration-none link-primary' %></li>
+                        <%= link_to "Destroy", user_post_path(current_user.id,@post.id), method: :delete, data: { confirm: "Are you sure?" }, class:'link-danger mx-2 text-decoration-none' %>
+                    </div>
+                <%end%>
+                
             </div>
             <div>
-
+                <p>Comments</p>
+                <%= render @post.comment %>
+            </div>
+            <div>
+                <h2>Add a comment:</h2>
+                <%= render 'comment/form' %>
             </div>
         </div>
         <div class="col-3">
-
+            
         </div>
     </div>
 </div>
