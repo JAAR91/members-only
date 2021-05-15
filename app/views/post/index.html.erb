@@ -9,7 +9,7 @@
                 <%= link_to "New post", new_user_post_path(current_user.id), class:'link-success text-decoration-none text-uppercase' %>
             </div>
             <%end%>  
-            <% @post.each do |post| %>
+            <% @post.order('created_at DESC').each do |post| %>
                 <div class="border border-3 rounded p-4 bg-light my-1">
                     <div class="shadown m-1 d-flex border-bottom">
                         <% if user_signed_in? %>

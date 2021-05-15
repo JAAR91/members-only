@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6 border shadown rounded m-3 p-2">
+           <%= form_with model: @comment, url: "/post/#{@comment.post.id}/comment/#{@comment.id}", method:'patch' do |form| %>
+                <div>
+                    <%= form.label 'Update Comment' %><br>
+                    <%= form.text_field :info, value: @comment.info, class:'container border rounded my-2' %>
+                    <% @comment.errors.full_messages_for(:info).each do |message| %>
+                        <div><%= message %></div>
+                    <% end %>
+                    <%= form.text_field :user_id, value: @comment.user.id, type: :hidden %>
+                    <%= form.text_field :post_id, value: @comment.post.id, type: :hidden %>
+                </div>
+                
+                <div class="d-flex flex-row justify-content-end my-2">
+                    <%= form.submit 'Update Comment', class:'btn btn-primary' %>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+</div>

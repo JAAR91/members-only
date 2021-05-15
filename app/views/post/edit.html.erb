@@ -7,14 +7,14 @@
            <%= form_with model: @post, url: "/user/#{current_user.id}/post/#{@post.id}", method:'patch' do |form| %>
                 <div>
                     <%= form.label 'New Post title' %><br>
-                    <%= form.text_field :title, class:'container border rounded' %>
+                    <%= form.text_field :title, class:'container border rounded my-2' %>
                     <% @post.errors.full_messages_for(:title).each do |message| %>
                         <div><%= message %></div>
                     <% end %>
                 </div>
                 <div>
                     <%= form.label :body %><br>
-                    <%= form.text_area :body, class:'container border rounded ' %><br>
+                    <%= form.text_area :body, class:'container border rounded my-2' %><br>
                     <% @post.errors.full_messages_for(:body).each do |message| %>
                         <div><%= message %></div>
                     <% end %>
@@ -23,7 +23,7 @@
                     <%= form.text_field :user_id, value: current_user.id, type: :hidden %>
                 </div>
                 <div>
-                    <%= form.submit 'Update Post', class:'btn btn-primary' %>
+                    <%= form.submit 'Update Post', class:'btn btn-primary my-2' %>
                 </div>
             <% end %>
         </div>

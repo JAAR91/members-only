@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   end
 
   resources :post do
-    resources :comments
+    resources :comment
   end
 end
