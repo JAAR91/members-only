@@ -1,0 +1,5 @@
+<p>Hello <%= @email %>!</p>
+
+<p>
+<%= email_cha(@resource.try(:unconfirmed_email?), @resource)%>
+</p>

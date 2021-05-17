@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6">
+            <div class="border border-3 rounded p-3 bg-light my-2">
+                <div class="shadown ms-auto d-flex flex-row align-items-center border-bottom m-1">
+                    <p class="text-uppercase text-decoration-none fs-5 link-secondary text-break"> <%= @post.title %> </p>
+                    <p class="text-black-50 mx-2"><%= @post.created_at %></p>
+                </div>
+                <div class="container shadown">
+                    <p class="text-break my-2"><%= @post.body%></p>
+                </div>
+                    <p class="shadown ms-auto text-end border-bottom py-2">
+                    by <%= @post.user.email %>
+                    </p>
+                    <div class="d-flex flex-row justify-content-end">
+                    <% modify_post(current_user, @post).each do |mlinks|%>
+                        <%= mlinks %>
+                    <%end%>
+                    </div>
+                
+            </div>
+            <div class="border border-3 rounded shadown p-3 my-3">
+                <%= render 'comment/form' %>
+            </div>
+            <div class="border border-3 rounded shadown p-3">
+                <p class="w-100 border-bottom my-3 text-black-50 fs-5">Comments</p>
+                <p class="text-black-50 text-center"><%= no_comments(@post) %></p>
+                <%= render 'comment/comment', post: @post.comment %>
+            </div>
+        </div>
+        <div class="col-3">
+            
+        </div>
+    </div>
+</div>

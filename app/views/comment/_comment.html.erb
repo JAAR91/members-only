@@ -1,0 +1,18 @@
+
+<% post.order('created_at')%>
+<% post.order('created_at DESC').each do |comment| %>
+  <div class="container bg-light my-2 py-2 border">
+    <div class="d-flex">
+      <p class="text-black-50"><%= comment.user.email %></p>
+      <p class="mx-5 text-black-50"><%= comment.created_at %></p>
+    </div>
+    <p><%= comment.info %></p>
+
+    <div class="d-flex flex-row justify-content-end">
+      <% modify_comment(current_user, comment).each do |clinks| %>
+          <%= clinks %>
+      <%end%>
+    </div>
+  </div>
+  
+<% end %>

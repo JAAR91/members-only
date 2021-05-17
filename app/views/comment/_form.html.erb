@@ -1,0 +1,11 @@
+<div>
+  <%= form_with model: @post.comment, url:"/post/#{@post.id}/comment" , method: 'post' do |form| %>
+    <p><%= form.label 'New comment' %></p>
+    <%= form.text_area :info, class:'w-100' %>
+    <%= form.text_field :post_id, value: @post.id, type: :hidden %>
+    <%= form.text_field :user_id, value: current_user.id, type: :hidden %>
+    <div class="d-flex flex-row justify-content-end">
+      <%= form.submit 'Add new comment', class:'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
