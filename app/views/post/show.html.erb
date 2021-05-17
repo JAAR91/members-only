@@ -12,17 +12,14 @@
                 <div class="container shadown">
                     <p class="text-break my-2"><%= @post.body%></p>
                 </div>
-                 <% if user_signed_in? %>
                     <p class="shadown ms-auto text-end border-bottom py-2">
                     by <%= @post.user.email %>
                     </p>
-                <%end%>
-                <% if current_user.id == @post.user_id %>
                     <div class="d-flex flex-row justify-content-end">
-                        <%= link_to "Edit", edit_user_post_path(current_user.id, @post.id), class:'mx-2 text-decoration-none link-primary' %></li>
-                        <%= link_to "Destroy", user_post_path(current_user.id,@post.id), method: :delete, data: { confirm: "Are you sure?" }, class:'link-danger mx-2 text-decoration-none' %>
+                    <% modify_post(current_user, @post).each do |mlinks|%>
+                        <%= mlinks %>
+                    <%end%>
                     </div>
-                <%end%>
                 
             </div>
             <div class="border border-3 rounded shadown p-3 my-3">
@@ -30,9 +27,7 @@
             </div>
             <div class="border border-3 rounded shadown p-3">
                 <p class="w-100 border-bottom my-3 text-black-50 fs-5">Comments</p>
-                <% if @post.comment.length.zero? %>
-                <p class="text-black-50 text-center">No comments yet</p>
-                <%end%>
+                <p class="text-black-50 text-center"><%= no_comments(@post) %></p>
                 <%= render 'comment/comment', post: @post.comment %>
             </div>
         </div>

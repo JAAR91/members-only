@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'post#index'
 
   resources :user do
-    resources :post, only: [:new, :create, :show, :edit, :destroy, :update]
+    resources :post
   end
 
   resources :post do

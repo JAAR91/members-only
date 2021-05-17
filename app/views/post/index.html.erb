@@ -4,29 +4,19 @@
 
         </div>
         <div class="col-6">
-            <% if user_signed_in? %>
             <div class="container border border-3 rounded py-2 my-1 bg-light text-center">
-                <%= link_to "New post", new_user_post_path(current_user.id), class:'link-success text-decoration-none text-uppercase' %>
+                <%= user_post(current_user) %>
             </div>
-            <%end%>  
             <% @post.order('created_at DESC').each do |post| %>
                 <div class="border border-3 rounded p-4 bg-light my-1">
                     <div class="shadown m-1 d-flex border-bottom">
-                        <% if user_signed_in? %>
-                            <%= link_to post.title, user_post_path(current_user.id, post.id), class:'text-uppercase link-info text-decoration-none text-break' %></li>
-                        <%else%>
-                            <p class="text-uppercase"><%= post.title %></p>
-                        <%end%>
+                        <p class="text-uppercase"> <%= post_title(user_signed_in?, post) %> </p>
                         <p class="text-black-50 mx-2"><%= post.created_at %></p>
                     </div>
                     <div class="container shadown">
                             <p class="text-break"><%= post.body %></p>
                     </div>
-                    <% if user_signed_in? %>
-                        <p class="shadown ms-auto text-end">
-                        by <%= post.user.email %>
-                        </p>
-                    <% end %>  
+                     <p class="shadown ms-auto text-end"><%= user_email(current_user, post)%></p>
                 </div>
             <% end %>
         </div>
