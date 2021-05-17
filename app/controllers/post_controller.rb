@@ -11,8 +11,6 @@ class PostController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    p @post
-    p @post.save
     if @post.save
       flash.alert = 'Post created succesfuly!'
       redirect_to root_path
