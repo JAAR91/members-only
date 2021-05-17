@@ -30,7 +30,9 @@
             </div>
             <div class="border border-3 rounded shadown p-3">
                 <p class="w-100 border-bottom my-3 text-black-50 fs-5">Comments</p>
-
+                <% if @post.comment.length.zero? %>
+                <p class="text-black-50 text-center">No comments yet</p>
+                <%end%>
                 <%= render 'comment/comment', post: @post.comment %>
             </div>
         </div>

@@ -9,11 +9,6 @@
         <li class="nav-item">
           <%= link_to 'Home', root_path, class:'nav-link text-dark' %>
         </li>
-        <% if user_signed_in? %>
-           <li class="nav-item">
-           <a class="nav-link active" href="#">My Posts</a>
-           </li>  
-        <%end%>  
         
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
