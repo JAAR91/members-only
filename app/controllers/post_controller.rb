@@ -1,5 +1,5 @@
 class PostController < ApplicationController
-  before_action :authenticate_user!, except:[:index, :show]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @post = Post.all
@@ -14,10 +14,10 @@ class PostController < ApplicationController
     p @post
     p @post.save
     if @post.save
-      flash.alert = "Post created succesfuly!"
+      flash.alert = 'Post created succesfuly!'
       redirect_to root_path
     else
-      flash.alert = "Error unable to save the post"
+      flash.alert = 'Error unable to save the post'
       render :new
     end
   end
@@ -30,9 +30,9 @@ class PostController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to user_post_path(@post.user_id,@post.id)
+      redirect_to user_post_path(@post.user_id, @post.id)
     else
-      flash.alert = "Error!Unable to update the post"
+      flash.alert = 'Error!Unable to update the post'
       render :edit
     end
   end
@@ -43,15 +43,14 @@ class PostController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.comment.each do |comment|
-      comment.destroy
-    end
+    @post.comment.each(&:destroy)
     @post.destroy
 
     redirect_to root_path
   end
 
-  private 
+  private
+
   def post_params
     params.require(:post).permit(:title, :body, :user_id)
   end
